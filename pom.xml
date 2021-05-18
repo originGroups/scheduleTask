@@ -10,6 +10,7 @@
     <modules>
         <module>scheduleTaskOne</module>
         <module>scheduleTaskTwo</module>
+        <module>scheduleTaskThree</module>
     </modules>
     <packaging>pom</packaging>
     <build>
