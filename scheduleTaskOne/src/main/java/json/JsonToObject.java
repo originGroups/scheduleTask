@@ -10,11 +10,11 @@ import java.lang.Object;
 import java.util.*;
 
 /**
- * @author
+ * @author 袁强
  * @data 2021/5/15 17:00
  * @Description
  */
-public class TestJson {
+public class JsonToObject {
 
     public static void main(String[] args){
         String str = "{\n" +
@@ -45,7 +45,7 @@ public class TestJson {
         System.out.println(childTree);
     }
 
-    private static List<User> getChildTree(JSONObject jsonObject) {
+    public static List<User> getChildTree(JSONObject jsonObject) {
         List<User> list = new ArrayList<>();
         Map<String, Object> map = jsonObject.getInnerMap();
         //该json总共有parents.size()个父节点
@@ -67,17 +67,20 @@ public class TestJson {
             }*/
             if(child instanceof String){
                 user.setValue(child.toString());
+                user.setType("String");
                 list.add(user);
                 continue;
             }
             if(child instanceof JSONObject){
                 JSONObject object = (JSONObject) child;
                 List<User> childTree = getChildTree(object);
+                user.setType("JSONObject");
                 user.setChild(childTree);
                 list.add(user);
             }
             if(child instanceof JSONArray){
                 JSONArray array = (JSONArray) child;
+                user.setType("JSONArray");
                 for (Object object : array) {
                     JSONObject json = (JSONObject) object;
                     List<User> childTree = getChildTree(json);
