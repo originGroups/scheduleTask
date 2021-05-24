@@ -40,7 +40,11 @@ public class ObjToJson {
 
         JSONObject jsonObject = JSON.parseObject(str);
         List<User> childTree = JsonToObject.getChildTree(jsonObject);
-
+        User user1 = new User();
+        user1.setName("hehe");
+        user1.setValue("HEHE");
+        user1.setType("String");
+        childTree.add(user1);
         JSONObject jsonObjectNew = new JSONObject();
 
         for (User user:childTree) {
